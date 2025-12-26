@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: #0b1d33;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+}
+.hidden { display: none !important; }
+.merry {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #e74c3c;
+    text-shadow: 0 0 10px #fff;
+    animation: glow 2s infinite;
+}
+@keyframes glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+.modal {
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+.modal button, #setup button {
+    padding: 10px 30px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.letter-box {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    padding: 20px;
+    width: 85%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    line-height: 1.6;
+    animation: fadeIn 2s;
+}
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
