@@ -1,150 +1,60 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Message</title>
-    <style>
-        :root {
-            --off-white: #F5F5F0; /* لون أوف وايت حقيقي وهادئ */
-            --rose-gold: #B76E79; /* لون الكتابة وردي ذهبي */
-            --pure-white: #FFFFFF;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--off-white);
-            font-family: 'Times New Roman', serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: var(--rose-gold);
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            width: 85%;
-            max-width: 400px;
-        }
-
-        .screen {
-            display: none;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .active {
-            display: block;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.9rem;
-            display: block;
-            margin: 15px 0;
-        }
-
-        .btn {
-            background: transparent;
-            border: 1px solid var(--rose-gold);
-            color: var(--rose-gold);
-            padding: 12px 30px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            margin-top: 30px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            border-radius: 1px;
-        }
-
-        .btn:hover {
-            background: var(--rose-gold);
-            color: white;
-        }
-
-        /* إطار الفيديو الأبيض فوق الخلفية الأوف وايت */
-        .video-frame {
-            position: relative;
-            padding: 12px;
-            background: var(--pure-white);
-            border: 1px solid #E0E0D5;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            display: inline-block;
-            border-radius: 4px;
-        }
-
-        .flower-symbol {
-            font-size: 1.8rem;
-            display: block;
-            margin: 20px 0;
-            opacity: 0.8;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+    <title>Merry Christmas Nabaa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <div id="screen1" class="screen active">
-            <h1>Merry Christmas</h1>
-            <div class="flower-symbol">✿</div>
-            <button class="btn" onclick="nextScreen(2)">Press Here</button>
-        </div>
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-        <div id="screen2" class="screen">
-            <span class="arabic-text">كل الناس</span>
-            <h1>Merry Christmas</h1>
-            <span class="arabic-text">إلا انتِ</span>
-            <h1>Marry Me</h1>
-            <div class="flower-symbol">❦</div>
-            <button class="btn" onclick="nextScreen(3)">This is for you</button>
-        </div>
+    <div id="setup">
+        <button onclick="startExperience()">Click to Start ❤️</button>
+    </div>
 
-        <div id="screen3" class="screen">
-            <h1 style="font-size: 1.5rem;">Just for you</h1>
-            <div class="video-frame">
-                <iframe 
-                    id="yt-video"
-                    width="270" 
-                    height="180" 
-                    src="https://www.youtube.com/embed/Zmxa8ZsSx5s?start=20&rel=0" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="flower-symbol">❃</div>
+    <div id="mainContent" class="hidden">
+        <h1 class="merry">Merry Christmas Nabaa</h1>
+        <div class="snowflakes">❄</div>
+    </div>
+
+    <div id="askEnter" class="hidden">
+        <div class="modal">
+            <p>Do you want to enter here?</p>
+            <button onclick="showLetter()">Yes</button>
+        </div>
+    </div>
+
+    <div id="letterArea" class="hidden">
+        <div class="letter-box">
+            <h2>My love Nabaa</h2>
+            <p id="letterText">
+                I want to speak to you honestly from my heart. I am truly sorry for the pain I caused you. You did not deserve to feel hurt, and it hurts me knowing I was the reason. I promise I will learn from my mistakes and be better for you, because you are too precious to lose.<br><br>
+                You are not just someone in my life; you are my peace, my happiness, and the person I always want beside me. I miss your voice, your smile, and the comfort I feel when I am with you. My feelings for you are real, deep, and sincere, and I want to prove that with my actions, not just words.<br><br>
+                If you give me another chance, I promise to love you better, care for you more, and protect your heart like it deserves. I love you so much, and I am truly sorry.
+            </p>
         </div>
     </div>
 
     <script>
-        function nextScreen(screenNumber) {
-            // إخفاء الواجهات
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            // إظهار الواجهة المطلوبة
-            document.getElementById('screen' + screenNumber).classList.add('active');
+        function startExperience() {
+            document.getElementById('setup').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.getElementById('bgMusic').play();
             
-            // تشغيل الفيديو تلقائياً عند الوصول للواجهة الأخيرة
-            if(screenNumber === 3) {
-                var iframe = document.getElementById('yt-video');
-                var src = iframe.src;
-                iframe.src = src + "&autoplay=1";
-            }
+            // بعد 40 ثانية يظهر السؤال
+            setTimeout(() => {
+                document.getElementById('askEnter').classList.remove('hidden');
+            }, 40000); 
+        }
+
+        function showLetter() {
+            document.getElementById('askEnter').classList.add('hidden');
+            document.getElementById('letterArea').classList.remove('hidden');
         }
     </script>
 </body>
